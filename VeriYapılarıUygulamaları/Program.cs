@@ -8,9 +8,162 @@ namespace VeriYapılarıUygulamaları
     {
         static void Main(string[] args)
         {
-            SortedDictionaryApp();
-
+            SortedSetPractice();
             Console.ReadKey();
+        }
+
+        private static void SortedSetPractice()
+        {
+            //SortedSet Küme İşlemleri
+            //var A = new SortedSet<int>() { 1, 2, 3, 4 };
+            var A = new SortedSet<int>(RastgeleSayiUret(10000));
+            var B = new SortedSet<int>(RastgeleSayiUret(10000));
+            //var B = new SortedSet<int>() { 1, 2, 5, 6 };
+
+            #region yazdirma
+            Console.WriteLine();
+            Console.WriteLine("A kümesi");
+            foreach (int s in A)
+            {
+                Console.Write($"{s,5}");
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("B kümesi");
+            foreach (int s in B)
+            {
+                Console.Write($"{s,5}");
+            }
+            #endregion
+            Console.WriteLine();
+
+            //Union
+            //A.UnionWith(B);
+
+            //Console.WriteLine("\n\nA ve B kümesinin birleşimi");
+            //foreach (int s in A) 
+            //{
+            //    Console.Write($"{s,5}");
+            //}
+            //Console.WriteLine();
+            //Console.WriteLine("\nToplam sayisi : {0}", A.Count);
+            //Console.WriteLine();
+
+            //Kesişim
+            //A.IntersectWith(B);
+            //Console.WriteLine("\n\nA ve B kümesinin kesişimi");
+            //foreach (int s in A)
+            //{
+            //    Console.Write($"{s,5}");
+            //}
+            //Console.WriteLine();
+            //Console.WriteLine("\nToplam sayisi : {0}", A.Count);
+
+
+            //Console.WriteLine();
+
+            //Sadece A veya B kümesindeki elemanı seçme
+            //A.ExceptWith( B );
+            //Console.WriteLine();
+            //Console.WriteLine("\n\nSadece A");
+            //foreach (var s in A)
+            //{
+            //    Console.Write($"{s,5}");
+            //}
+            //Console.WriteLine();
+            //Console.WriteLine("\nToplam sayisi : {0}", A.Count);
+            //
+            //
+            //Console.WriteLine();
+
+            //Kesişim dışındaki elemanları alma
+            A.SymmetricExceptWith(B);
+
+            Console.WriteLine();
+            Console.WriteLine("\n\n Kesisim disindaki elemanlar");
+            foreach (var s in A)
+            {
+                Console.Write($"{s,5}");
+            }
+            Console.WriteLine();
+            Console.WriteLine("\nToplam sayisi : {0}", A.Count);
+
+
+            Console.WriteLine();
+        }
+
+        static List<int> RastgeleSayiUret(int n)
+        {
+            var list = new List<int>();
+            var r = new Random();
+
+            for (int i = 0; i < n; i++)
+            {
+                list.Add(r.Next(0, 1000));    
+            }
+            return list;
+        }
+
+        private static void SortedSetApp()
+        {
+            //SortedSet
+
+            var sayilar = new List<int>();
+            var r = new Random();
+
+            Console.WriteLine();
+            for (int i = 0; i < 1000; i++)
+            {
+                sayilar.Add(r.Next(5, 25));
+                Console.Write($"{sayilar[i],-3}");
+            }
+            Console.WriteLine();
+
+            //Listedeki benzersiz elemanları bulmak
+            var benzersizSayiListesi = new SortedSet<int>(sayilar);
+
+            Console.WriteLine("\nBenzersiz Sayilarin Listesi\n");
+            foreach (int item in benzersizSayiListesi)
+            {
+                Console.Write($"{item,-3}");
+            }
+            Console.WriteLine();
+            Console.WriteLine("\nBenzersiz {0} sayi var.", benzersizSayiListesi.Count);
+        }
+
+        private static void SortedSetBasics()
+        {
+            //SortedSet
+            //Tanımlama
+
+            var list = new SortedSet<string>();
+
+            //Ekleme
+            if (list.Add("Mehmet"))
+            {
+                Console.WriteLine("Mehmet eklendi");
+            }
+            else
+            {
+                Console.WriteLine("Ekleme başarısız");
+            }
+
+            Console.WriteLine("{0}", list.Add("Ahmet") == true ? "Ahmet Eklendi" : "Ekleme başarısız.");
+
+            list.Add("Sule");
+            list.Add("Neslihan");
+            list.Add("Fahrettin");
+            list.Add("Fatih");
+
+            list.Remove("Sule");
+            list.RemoveWhere(deger => deger.StartsWith("F"));
+
+            Console.WriteLine("\nİsimler listesi\n");
+            foreach (string item in list)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("Eleman sayisi        :{0,3}", list.Count);
         }
 
         private static void SortedDictionaryApp()
