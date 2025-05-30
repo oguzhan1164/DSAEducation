@@ -8,8 +8,68 @@ namespace VeriYapılarıUygulamaları
     {
         static void Main(string[] args)
         {
-            SortedSetPractice();
+            HashSetPractice();
             Console.ReadKey();
+        }
+
+        private static void HashSetPractice()
+        {
+            //Hashset
+            //Tanımlama
+            var sesliHarf = new HashSet<char>()
+            {
+                'e','ı','i','u','ü','o','ö','b'
+            };
+            //KoleysiyonYazdir(sesliHarf);
+            //Ekleme
+            sesliHarf.Add('a');
+            //KoleysiyonYazdir(sesliHarf);
+
+            //Listeden çıkarma
+            sesliHarf.Remove('b');
+            KoleysiyonYazdir(sesliHarf);
+
+            var alfabe = new List<char>();
+            for (int i = 97; i < 123; i++)
+                alfabe.Add((char)i);
+
+            //alfabe.ForEach(k => Console.WriteLine(k));
+
+            //var hashAlfabe = new HashSet<char>();
+
+            //for(int i =0; i<alfabe.Count; i++)
+            //{
+            //    hashAlfabe.Add(alfabe[i]);
+            //}
+            //KoleysiyonYazdir(hashAlfabe);
+            KoleysiyonYazdir(alfabe);
+
+            //Türkçe'de kullanılan sesli harfler
+
+            //sesliHarf.ExceptWith(alfabe);
+            //KoleysiyonYazdir(sesliHarf);
+            //Tüm harfler
+            sesliHarf.UnionWith(alfabe);
+            KoleysiyonYazdir(sesliHarf);
+            //Kesişim
+            //sesliHarf.IntersectWith(alfabe);
+            //KoleysiyonYazdir(sesliHarf);
+            //sesliHarf.SymmetricExceptWith(alfabe);
+            //KoleysiyonYazdir(sesliHarf);
+        }
+
+        static void KoleysiyonYazdir(IEnumerable koleysiyon)
+        {
+            Console.WriteLine();
+            int i = 0;
+            foreach (char c in koleysiyon)
+            {
+                Console.Write($"{c,5}");
+                i++;
+            }
+            Console.WriteLine();
+            Console.WriteLine("Eleman sayisi : {0}",i);
+            Console.WriteLine();
         }
 
         private static void SortedSetPractice()
